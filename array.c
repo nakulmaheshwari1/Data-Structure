@@ -16,7 +16,7 @@ int main()
         printf("|%d|",a[i]);
     }
     // insertion at start (index==0)
-    for(i=n-1;i<=0;i--){
+    for(i=n-1;i>=0;i--){
         a[i+1]=a[i];
     }
     printf("enter the element for insertion at start:");
