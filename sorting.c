@@ -34,7 +34,6 @@ void mergesort(int a[], int st, int mid, int end)
     {
         a[i] = temp[i];
     }
-    
 }
 int divide(int a[], int st, int end)
 {
@@ -45,6 +44,26 @@ int divide(int a[], int st, int end)
         divide(a, mid + 1, end);
         mergesort(a, st, mid, end);
     }
+}
+int binarySearch(int a[], int l, int h, int target)
+{
+    int mid = l + (h - l) / 2;
+    while (l <= h)
+    {
+        if (target < a[mid])
+        {
+            h = mid - 1;
+        }
+        else if (target > a[mid])
+        {
+            l = mid + 1;
+        }
+        else
+        {
+            return mid;
+        }
+    }
+    return -1;
 }
 
 int main()
@@ -60,6 +79,18 @@ int main()
     for (i = 0; i < 10; i++)
     {
         printf("|%d|", a[i]);
+    }
+    int target;
+    printf("Enter the target element for search:");
+    scanf("%d", &target);
+    int bS = binarySearch(a, 0, 9, target);
+    if (bS == -1)
+    {
+        printf("target element is not in the given array");
+    }
+    else
+    {
+        printf("%d", bS);
     }
     return 0;
 }
