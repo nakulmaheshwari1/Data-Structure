@@ -96,7 +96,7 @@ int deletion(int a[], int n, int m)
     }
 }
 
-// SORTING ELEMENTS AT EVEN/ODD POSITIONS(ODD INDICES)
+// SORTING ELEMENTS AT EVEN/ODD POSITIONS(ODD/EVEN INDICES)
 int sort_even_odd(int a[], int n, char ch)
 {
     if (ch == 'E')
@@ -139,6 +139,43 @@ int sort_even_odd(int a[], int n, char ch)
     }
 }
 
+// SORTING ELEMENT WHICH ARE EVEN / ODD
+int soe(int a[], int n, char ch)
+{
+    int i = 0, j = 0, k = 0, B[MAX], C[MAX];
+    if (ch == 'E')
+    {
+        for (i = 0; i < n; i++)
+        {
+            if (a[i] % 2 == 0)
+            {
+                B[j++] = i;
+                C[k++] = a[i];
+            }
+        }
+    }
+    else if (ch == 'O')
+    {
+        for (i = 0; i < n; i++)
+        {
+            if (a[i] % 2 != 0)
+            {
+                B[j++] = i;
+                C[k++] = a[i];
+            }
+        }
+    }
+    mergesort(C, 0, j);
+    for (k = 0; k < j; k++)
+    {
+        a[B[k]] = C[k];
+    }
+    for (i = 0; i < n; i++)
+    {
+        printf("|%d|", a[i]);
+    }
+}
+
 int main()
 {
     int i, a[MAX], n;
@@ -157,6 +194,8 @@ int main()
     printf("Binary Search - Enter 'b'\n");
     printf("Insertion - Enter 'I'\n");
     printf("Deletion - Enter 'D'\n");
+    printf("Sorting elements at even / odd position - Enter S\n");
+    printf("Sorting element which are even / odd - Enter s\n");
     scanf(" %c", &ch);
     if (ch == 'm')
     {
@@ -214,5 +253,14 @@ int main()
         scanf(" %c", &id);
         sort_even_odd(a, n, id);
     }
+    else if (ch == 's')
+    {
+        printf("Enter which elements you want to sort\n");
+        printf("For even elements - Enter E\n");
+        printf("For odd elements - Enter O\n");
+        scanf(" %c", &status);
+        soe(a, n, status);
+    }
+
     return 0;
 }
