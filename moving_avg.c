@@ -25,10 +25,7 @@ void simple_Moving_Avg(int a[],int n, int m ){
 }
 
 
-// exponnential moving array
-void exponential_moving_array(){
-       
-}
+
 int main()
 {
     
