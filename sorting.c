@@ -1,5 +1,43 @@
 #include <stdio.h>
-void mergesort(int a[], int st, int mid, int end)
+void swap(int *x, int *y)
+{
+    int temp = *y;
+    *y = *x;
+    *x = temp;
+}
+void binarysort(int a[], int n)
+{
+    int i, j;
+    for (i = 0; i < n - 1; i++)
+    {
+        for (j = 0; j < n - i - 1; j++)
+        {
+            if (a[j] > a[j + 1])
+            {
+                swap(&a[j], &a[j + 1]);
+            }
+        }
+    }
+}
+
+void selectionsort(int a[], int n)
+{
+    int i, j;
+    for (i = 0; i < n - 1; i++)
+    {
+        int smallIdx = i;
+        for (j = i + 1; j < n; j++)
+        {
+            if (a[j] < a[smallIdx])
+            {
+                smallIdx = j;
+            }
+        }
+        swap(&a[i], &a[smallIdx]);
+    }
+}
+
+void merge(int a[], int st, int mid, int end)
 {
     int temp[100];
     int i = st, j = mid + 1, k = st;
@@ -35,14 +73,14 @@ void mergesort(int a[], int st, int mid, int end)
         a[i] = temp[i];
     }
 }
-int divide(int a[], int st, int end)
+int mergesort(int a[], int st, int end)
 {
     int mid = st + (end - st) / 2;
     if (st < end)
     {
-        divide(a, st, mid);
-        divide(a, mid + 1, end);
-        mergesort(a, st, mid, end);
+        mergesort(a, st, mid);
+        mergesort(a, mid + 1, end);
+        merge(a, st, mid, end);
     }
 }
 int binarySearch(int a[], int l, int h, int target)
@@ -75,11 +113,13 @@ int main()
     {
         scanf("%d", &a[i]);
     }
-    divide(a, 0, 9);
+    mergesort(a, 0, 9);
     for (i = 0; i < 10; i++)
     {
         printf("|%d|", a[i]);
     }
+
+    // Binary Search
     int target;
     printf("Enter the target element for search:");
     scanf("%d", &target);
