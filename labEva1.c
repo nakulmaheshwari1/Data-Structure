@@ -91,6 +91,7 @@ void printarr(int arr[], int n)
 
 int main()
 {
+    // Ques 1
     int n;
     printf("Enter the size of array:");
     scanf("%d", &n);
@@ -116,5 +117,27 @@ int main()
         printarr(arr, n);
     }
 
+    // Ques 2
+    int a, b;
+    printf("Enter the indices of sub-array you want to reverse:");
+    scanf("%d %d", &a, &b);
+    int size = b - a + 1;
+    int temp[size];
+    int k = 0;
+    for (i = a; i <= b; i++)
+    {
+        temp[k++] = arr[i];
+    }
+    // reversing
+    k = 0;
+    for(i = b, i>=a; i--){
+        arr[i] = temp[k++];
+    }
+    for(i = 0;i < n; i++){
+        printf("%d", arr[i]);
+    }
+    
+    //Ques 3
+    
     return 0;
 }
