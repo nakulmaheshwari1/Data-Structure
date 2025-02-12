@@ -19,7 +19,6 @@ void binarysort(int a[], int n)
         }
     }
 }
-
 void selectionsort(int a[], int n)
 {
     int i, j;
@@ -36,7 +35,21 @@ void selectionsort(int a[], int n)
         swap(&a[i], &a[smallIdx]);
     }
 }
-
+void insertionsort(int a[], int n)
+{
+    int i, j;
+    for (i = 1; i < n; i++)
+    {
+        int curr = a[i];
+        int previous = i - 1;
+        while (previous >= 0 && a[previous] > curr)
+        {
+            a[previous + 1] = a[previous];
+            previous--;
+        }
+        a[previous + 1] = curr;
+    }
+}
 void merge(int a[], int st, int mid, int end)
 {
     int temp[100];
@@ -83,7 +96,7 @@ int mergesort(int a[], int st, int end)
         merge(a, st, mid, end);
     }
 }
-int binarySearch(int a[], int l, int h, int target)
+int bubblesort(int a[], int l, int h, int target)
 {
     int mid = l + (h - l) / 2;
     while (l <= h)
@@ -119,11 +132,11 @@ int main()
         printf("|%d|", a[i]);
     }
 
-    // Binary Search
+    // Bubble Search
     int target;
     printf("Enter the target element for search:");
     scanf("%d", &target);
-    int bS = binarySearch(a, 0, 9, target);
+    int bS = bubblesort(a, 0, 9, target);
     if (bS == -1)
     {
         printf("target element is not in the given array");
