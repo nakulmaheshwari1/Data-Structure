@@ -1,6 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// ques3 (Function)
+struct node
+{
+    int data;
+    struct node *next;
+};
+
+
+struct node* reversingLL(struct node *head)
+{
+    struct node *prev, *curr, *next;
+    prev = NULL;
+    curr = head;
+    next = NULL;
+    while (curr != NULL)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev;
+}
+void printList(struct node* head) {
+    while (head != NULL) {
+        printf("%d -> ", head->data);
+        head = head->next;
+    }
+    printf("NULL\n");
+}
+
 // Ques. 1
 void swap(int *a, int *b)
 {
@@ -130,14 +161,45 @@ int main()
     }
     // reversing
     k = 0;
-    for(i = b, i>=a; i--){
+    for (i = b; i >= a; i--)
+    {
         arr[i] = temp[k++];
     }
-    for(i = 0;i < n; i++){
-        printf("%d", arr[i]);
+    for (i = 0; i < n; i++)
+    {
+        printf("%d ", arr[i]);
     }
-    
-    //Ques 3
-    
+
+    // Ques 3 - Reversing linked list
+
+    struct node *head, *nnode, *temp1;
+    head = 0;
+    int option = 1;
+    while (option != 0)
+    {
+        nnode = (struct node *)malloc(sizeof(struct node));
+        printf("Enter the data:");
+        scanf("%d", &nnode->data);
+        nnode->next = 0;
+        if (head == 0)
+        {
+            head = nnode;
+            temp1 = head;
+        }
+        else
+        {
+            temp1->next = nnode;
+            temp1 = nnode;
+        }
+        printf("Do you want to continue (for yes = 1, no = 0):");
+        scanf("%d", &option);
+    }
+    printf("\nOriginal Linked List:\n");
+    printList(head);
+
+    head = reversingLL(head);
+
+    printf("\nReversed Linked List:\n");
+    printList(head);
     return 0;
 }
