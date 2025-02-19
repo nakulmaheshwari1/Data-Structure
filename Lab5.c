@@ -6,7 +6,6 @@ struct node
     int data;
     struct node *next;
 };
-
 void printlist(struct node *head)
 {
     struct node *curr = head;
@@ -50,7 +49,6 @@ void swapLargestTolast(struct node *head){
     addlargest->data = tail->data;
     tail->data = largest;
 }
-
 void splittingLLEvenOdd(struct node* head){
     struct node *headOdd, *headEven, *prevOdd, *prevEven, *temp;
     headEven = NULL;
@@ -108,6 +106,37 @@ void lastThirdNode(struct node* head){
     }
     printf("%d",temp->data);
 }
+void dataSwapAlternate(struct node* head){
+    struct node* temp = head;
+    int swap;
+    while(temp->next!=NULL){
+        swap = temp->data;
+        temp->data = temp->next->data;
+        temp->next->data = swap;
+        temp = temp->next->next;
+    }
+    printf("swap data alternatively:\n");
+    printlist(head);
+}
+void bubblesortinLL(struct node* head){
+    struct node* temp = head;
+    struct node* temp_i = head;
+    int swap;
+    while(temp_i->next != NULL){
+        while(temp->next != NULL){
+            if(temp->data > temp->next->data){
+                swap = temp->data;
+                temp->data = temp->next->data;
+                temp->next->data = swap;
+            }
+            temp = temp->next;
+        }
+        temp_i = temp_i->next;
+    }
+    printlist(head);
+}
+
+
 int main()
 {
 
@@ -155,6 +184,10 @@ int main()
     lastThirdNode(head);
     printf("\n");
     splittingLLEvenOdd(head);
+    printf("\n");
+    dataSwapAlternate(head);
+    printf("\n");
+    bubblesortinLL(head);
     printf("\n");
     return 0;
 }
