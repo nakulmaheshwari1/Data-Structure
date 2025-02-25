@@ -91,6 +91,12 @@ int main()
     if (choice == 'Y')
     {
         printf("Enter position where you want to enter data:");
+        scanf("%d",&pos);
+        printf("enter the data you want to enter:");
+        scanf("%d",&data);
+        if(pos == 1){
+            insert_at_Beginning(head, data);
+        }
     }
     return 0;
 }
