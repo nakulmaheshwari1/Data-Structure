@@ -16,7 +16,11 @@ void push(int data)
 }
 
 void pop(){
-    
+    if(top == -1){
+        printf("Stack is empty\n");
+    }else{
+        
+    }
 }
 
 int main()
